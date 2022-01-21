@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+</head>
+<body>
+<div>
+    <div>
+        <button>
+            <a href="/create">Add new song</a>
+        </button>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th colspan="2">Action</th>
+            </tr>
+            <tr th:each="s, loop:${songs}">
+                <td th:text="${s.id}"></td>
+                <td>
+                    <a th:href="@{/play/{id}(id=${s.id})}" th:text="${s.name}"></a>
+                </td>
+                <td th:text="${s.author}"></td>
+                <td th:text="${s.genre.name}"></td>
+                <td>
+                    <button>
+                        <a th:href="@{/edit/{id}(id=${s.id})}">Edit</a>
+                    </button>
+                </td>
+                <td>
+                    <button>
+                        <a th:href="@{/delete/{id}(id=${s.id})}">Delete</a>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
